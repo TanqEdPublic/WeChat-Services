@@ -20,7 +20,7 @@ public class UserServices {
 	private static final Logger logger = LoggerFactory.getLogger(UserServices.class);
 	
 	// @Transactional // used here
-	@Transactional(noRollbackFor = Exception.class)
+	//@Transactional(noRollbackFor = Exception.class)
 	public void createUser(String username, String password){
 
 		logger.info("Checking paramaters: " + username + " " + password);
