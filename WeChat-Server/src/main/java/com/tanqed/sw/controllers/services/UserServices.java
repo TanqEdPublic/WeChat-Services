@@ -38,5 +38,10 @@ public class UserServices {
 			logger.error("@@@ User failed to be saved... Reason: " + exc.getMessage() + " @@@");
 		}
 	}
+	public User findUser(String username){
+
+		return userDAO.findByUsername(username);
+
+	}
 
 }
