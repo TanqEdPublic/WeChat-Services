@@ -1,4 +1,4 @@
-package com.tanqed.sw.models;
+package com.tanqed.sw.models.user_models;
 
 /**
  * This is a bean class
