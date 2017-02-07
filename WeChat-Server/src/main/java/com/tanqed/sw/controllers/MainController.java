@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Restfull server
  * 
- * Service end-points controller that maps to a controller
+ * Service end-points controller that maps to other controllers
  */
 @RestController
 public class MainController {
