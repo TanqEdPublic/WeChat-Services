@@ -17,6 +17,8 @@ import com.tanqed.sw.models.user_models.User;
  * Restful server
  * 
  * Service end-points controller that maps to other controllers
+ * route:  /login
+ * route:  /register
  */
 @RestController
 public class MainController {
@@ -35,21 +37,43 @@ public class MainController {
     //@Transactional(dontRollbackOn = Exception.class)
     public String signUp(@RequestParam("username")String username,
                          @RequestParam("password")String password){
-    	
-    	
-        logger.info("Before Creating User: " + username + password);
-        try{
-        	userService.createUser(username, password);
-        }catch(MySQLIntegrityConstraintViolationException ex){
-        	System.out.println(ex.getMessage());
+        logger.info("Before Creating User: " + username + "  " + password);
+        User user = userService.findUser(username);
+        if (user == null){
+            try{
+                userService.createUser(username, password);
+            }catch(MySQLIntegrityConstraintViolationException ex){
+                System.out.println(ex.getMessage());
+            }
+            logger.info("register success.");
+            return "redister success!";
+        }else {
+            logger.info("register fail, the username is exist.");
+            return "this username is existed!";
         }
-        
-        logger.info("about to return to index");
-        return "index";
+
+
     }
 
-    @GetMapping("/find")
-    public User findUser(@RequestParam("username")String username){
-        return userService.findUser(username);
+    @GetMapping("/login")
+    public String login(@RequestParam("username")String username,
+                        @RequestParam("password")String password){
+        logger.info("Before Login User: " + username + "  " + password);
+        User user = userService.findUser(username);
+        String psw;
+        if (user == null){
+            logger.info("do not find such user!");
+            return "no such user!";
+        }else {
+            psw = user.getPassword();
+            if (password.equals(psw)){
+                logger.info("login success.");
+                return "login success!";
+            }else {
+                logger.info("wrong password.");
+                return "password is wrong!";
+            }
+        }
+
     }
 }

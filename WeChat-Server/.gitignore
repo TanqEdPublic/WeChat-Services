@@ -25,3 +25,4 @@ nbdist/
 
 ### Mac config file ###
 .DS_Store/
+/.DS_Store
