@@ -1,5 +1,6 @@
 package com.tanqed.sw.controllers.services;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.tanqed.sw.models.user_models.User;
 import com.tanqed.sw.models.user_models.UserDAO;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class UserServices {
 	
 	// @Transactional // used here
 	//@Transactional(noRollbackFor = Exception.class)
-	public void createUser(String username, String password){
+	public void createUser(String username, String password) throws MySQLIntegrityConstraintViolationException{
 
 		logger.info("Checking paramaters: " + username + " " + password);
 		User newUser = new User(username, password);
@@ -33,7 +34,7 @@ public class UserServices {
 			userDAO.save(newUser);
 		}catch(Exception exc){
 
-			exc.printStackTrace();
+			//exc.printStackTrace();
 			//logger.error("This is CAUSE: " );
 			logger.error("@@@ User failed to be saved... Reason: " + exc.getMessage() + " @@@");
 		}

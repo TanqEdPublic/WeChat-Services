@@ -1,15 +1,20 @@
 package com.tanqed.sw.controllers;
 
-import com.tanqed.sw.controllers.services.UserServices;
-import com.tanqed.sw.models.user_models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import com.tanqed.sw.controllers.services.UserServices;
+import com.tanqed.sw.models.user_models.User;
 
 
 /**
- * Restfull server
+ * Restful server
  * 
  * Service end-points controller that maps to other controllers
  */
@@ -27,11 +32,18 @@ public class MainController {
 
     // handler for sign-up root
     @PostMapping("/sign-up")
+    //@Transactional(dontRollbackOn = Exception.class)
     public String signUp(@RequestParam("username")String username,
-                         @RequestParam("password")String password) throws Exception{
+                         @RequestParam("password")String password){
+    	
+    	
         logger.info("Before Creating User: " + username + password);
-
-        userService.createUser(username, password);
+        try{
+        	userService.createUser(username, password);
+        }catch(MySQLIntegrityConstraintViolationException ex){
+        	System.out.println(ex.getMessage());
+        }
+        
         logger.info("about to return to index");
         return "index";
     }
