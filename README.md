@@ -7,12 +7,15 @@
   different client applications, i.e., web browser application written using [React.js](https://facebook.github.io/react/) and desktop
   application on [JavaFX](http://www.oracle.com/technetwork/java/javase/overview/javafx-overview-2158620.html).
 
-## *Installation instructions are provided in separate README files for each application inside corresponding directories.*
+## General Installations:
+
+* [Installing Apache Mavin] (http://maven.apache.org/install.html)
+* [Installing MongoDB Server] (https://github.com/TanqEdPublic/WeChat-Services/wiki/WeChat-Development-Lab) 
+
+## * Additional installation instructions are provided in separate README files for each application inside corresponding directories.*
 
 ###Service should be able to:
-  - Allow users to register
-  - Authenticate registered user
-  - Allow users to change password
+  - Allow users to authenticate (OpenID or local)
   - Allow user to set avatar (?)
   
   - Allow registered users to access public chat and write a message

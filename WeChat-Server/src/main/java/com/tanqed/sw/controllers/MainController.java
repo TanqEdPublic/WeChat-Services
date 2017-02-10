@@ -1,15 +1,19 @@
 package com.tanqed.sw.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.tanqed.sw.controllers.services.UserServices;
+import com.tanqed.sw.models.user_models.MongoUser;
 import com.tanqed.sw.models.user_models.User;
 
 
@@ -46,7 +50,7 @@ public class MainController {
                 System.out.println(ex.getMessage());
             }
             logger.info("register success.");
-            return "redister success!";
+            return "register success!";
         }else {
             logger.info("register fail, the username is exist.");
             return "this username is existed!";
@@ -75,5 +79,11 @@ public class MainController {
             }
         }
 
+    } // end of /login end point
+    
+    /* Find all users and return as a list. Jackson parser than parse it to json */
+    @RequestMapping("/users")
+    public List<MongoUser> allUsers(){
+    	return userService.showAll();
     }
-}
+} // end of class
