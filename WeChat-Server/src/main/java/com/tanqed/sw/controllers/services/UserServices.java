@@ -14,7 +14,7 @@ import com.tanqed.sw.models.user_models.User;
 import com.tanqed.sw.models.user_models.UserDAO;
 
 
-/* Class that performs transactions with potential user. 
+/* Class that handles business logic of a back-end. This specific class handles user transaction against dao.
  * */
 
 @Service
@@ -28,6 +28,8 @@ public class UserServices {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserServices.class);
 	
+	// Consider to return some status to MainController about creation of a new user (true/false)
+	// MainController should decide what status to return to a user 200 OK or 400 Bad Request + optional description
 	public void createUser(String username, String password) throws MySQLIntegrityConstraintViolationException{
 
 		logger.info("Checking paramaters: " + username + " " + password);
@@ -51,6 +53,10 @@ public class UserServices {
 		return userDAO.findByUsername(username);
 	}
 
+	public MongoUser findMongoUser(String username){
+		return mongoDB.findByUsername(username);
+	}
+	
 	public ArrayList<MongoUser> showAll(){
 		
 		return (ArrayList<MongoUser>) mongoDB.findAll();

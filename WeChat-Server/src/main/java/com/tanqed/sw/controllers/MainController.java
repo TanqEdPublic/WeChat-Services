@@ -23,29 +23,29 @@ import com.tanqed.sw.models.user_models.User;
  * Service end-points controller that maps to other controllers
  * route:  /login
  * route:  /register
+ * route: /users
  */
 @RestController
 public class MainController {
 
+	// Spring Boot injecting beans through @Autowired annotation
     @Autowired
     private UserServices userService;
 
+    // Server console logger
     private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    public MainController(UserServices userService) {
-        this.userService = userService;
-    }
-
-    // handler for sign-up root
+    // handler for sign-up root, excepts parameters from URI and stores as a java variable
     @PostMapping("/sign-up")
-    //@Transactional(dontRollbackOn = Exception.class)
     public String signUp(@RequestParam("username")String username,
                          @RequestParam("password")String password){
         logger.info("Before Creating User: " + username + "  " + password);
-        User user = userService.findUser(username);
-        if (user == null){
+        
+        User user = userService.findUser(username); // find user from MySql
+        MongoUser mUser = userService.findMongoUser(username);  // find user in MongoDB
+        if (user == null || mUser == null){ // check if users exist
             try{
-                userService.createUser(username, password);
+                userService.createUser(username, password); // Delegate creation of a new user to user services class
             }catch(MySQLIntegrityConstraintViolationException ex){
                 System.out.println(ex.getMessage());
             }
@@ -59,18 +59,22 @@ public class MainController {
 
     }
 
-    @GetMapping("/login")
+    /* Login end point. Requests parameters from URI, i.e.,  ../login?username=admin&password=123 */ 
+    @PostMapping("/login")
     public String login(@RequestParam("username")String username,
                         @RequestParam("password")String password){
-        logger.info("Before Login User: " + username + "  " + password);
-        User user = userService.findUser(username);
-        String psw;
-        if (user == null){
+        logger.info("Before Login User: " + username + "  " + password); // log to server console
+        
+        User user = userService.findUser(username); // mysql jdbc search
+        MongoUser mongoUser = userService.findMongoUser(username); // mongodb search
+        String psw, mpsw;  
+        if (user == null || mongoUser == null){
             logger.info("do not find such user!");
             return "no such user!";
         }else {
-            psw = user.getPassword();
-            if (password.equals(psw)){
+            psw = user.getPassword(); // get password of mysql user object
+            mpsw = mongoUser.getPassword(); // get password of mongodb user object
+            if (password.equals(psw) && password.equals(mpsw)){ // check if given passwords match
                 logger.info("login success.");
                 return "login success!";
             }else {
@@ -78,6 +82,10 @@ public class MainController {
                 return "password is wrong!";
             }
         }
+        
+        /* Consider to move away business/service logic away from RestController
+         * Whose only purpose is to act as an end-points trigger and events shooter. 
+         * e.g., checks on user and password. Do not expose model beans class in RestController*/
 
     } // end of /login end point
     
