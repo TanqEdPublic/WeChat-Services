@@ -9,8 +9,9 @@
 
 ## General Installations:
 
-* [Installing Apache Mavin] (http://maven.apache.org/install.html)
+* [Installing Apache Maven] (http://maven.apache.org/install.html)
 * [Installing MongoDB Server] (https://github.com/TanqEdPublic/WeChat-Services/wiki/WeChat-Development-Lab) 
+* [Installing required tools] (https://github.com/TanqEdPublic/WeChat-Services/wiki/Required-tools-for-Eclipse-&-IntelliJ-IDEA)
 
 ## * Additional installation instructions are provided in separate README files for each application inside corresponding directories.*
 
