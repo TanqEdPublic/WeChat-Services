@@ -60,7 +60,7 @@ public class MainController {
     }
 
     /* Login end point. Requests parameters from URI, i.e.,  ../login?username=admin&password=123 */ 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String login(@RequestParam("username")String username,
                         @RequestParam("password")String password){
         logger.info("Before Login User: " + username + "  " + password); // log to server console
@@ -68,7 +68,7 @@ public class MainController {
         User user = userService.findUser(username); // mysql jdbc search
         MongoUser mongoUser = userService.findMongoUser(username); // mongodb search
         String psw, mpsw;  
-        if (user == null || mongoUser == null){
+        if (user == null && mongoUser == null){
             logger.info("do not find such user!");
             return "no such user!";
         }else {
