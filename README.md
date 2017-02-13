@@ -9,9 +9,7 @@
 
 ## General Installations:
 
-* [Installing Apache Maven] (http://maven.apache.org/install.html)
-* [Installing MongoDB Server] (https://github.com/TanqEdPublic/WeChat-Services/wiki/WeChat-Development-Lab) 
-* [Installing required tools] (https://github.com/TanqEdPublic/WeChat-Services/wiki/Required-tools-for-Eclipse-&-IntelliJ-IDEA)
+* [Installations](https://github.com/TanqEdPublic/WeChat-Services/wiki/WeChat-Development-Lab)
 
 ## * Additional installation instructions are provided in separate README files for each application inside corresponding directories.*
 
@@ -28,6 +26,7 @@
   1. [Maven](https://maven.apache.org/) package builder
   2. [Spring Boot](https://projects.spring.io/spring-boot/) API 
   3. [MySQL](https://dev.mysql.com/doc/refman/5.7/en/mysql-nutshell.html) Database
+  4. [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community) Database
   
 * **Front-end-React.js**
   1. [Maven](https://maven.apache.org/)
