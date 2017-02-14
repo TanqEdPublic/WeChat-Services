@@ -17,48 +17,70 @@ import com.tanqed.sw.models.user_models.SqlUser;
 @Service
 public class UserServiceImpl implements UserServices {
 
-	@Autowired
-	private MongoDAO mongoDB;
-	@Autowired
-	private SqlDAO sqlDB;
+    @Autowired
+    private MongoDAO mongoDB;
+    @Autowired
+    private SqlDAO sqlDB;
 
-	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
-	// Create new user for MySql and Mongo databases;
-	@Override
-	public String createUser(String username, String password) throws MySQLIntegrityConstraintViolationException {
-		
-		// Check if db entry with this username already exist
-		
-/*         if( user doesn't exist){
-			  try{
-			  		// add user
-			  } catch(){}
-		   } else { user exist, return message, don't register }                         */
-		
-		return null;
-	} // end of createUser()
+    // Create new user for MySql and Mongo databases;
+    @Override
+    public String createUser(String username, String password) throws MySQLIntegrityConstraintViolationException {
 
-	// Process login
-	@Override
-	public String loginUser(String username, String password) {
-		
-		// First, check if user exists
-/*		if( user exist){
- * 			// check for password
- * 			if(password correct){
- * 				allow to login
- * 			} else { incorrect password }
- * 		} else { user doesn't exist }
- 
- * */
-		return null;
-	}
+        // Check if db entry with this username already exist
 
-	@Override
-	public List<Object> showAll() {
-		return null;
-	}
-	
+//         if( user doesn't exist){
+//			  try{
+//			  		// add user
+//			  } catch(){}
+//		   } else { user exist, return message, don't register }
+
+//      this should be like this:
+//		if (sqlDB.findByUsername(username) == null && mongoDB.findByUsername(username) == null){
+//      but for the first time running(there is no user table in mysql) should change to this:
+        if (mongoDB.findByUsername(username) == null) {
+            try {
+                sqlDB.save(new SqlUser(username, password));
+                mongoDB.save(new MongoUser(username, password));
+            } catch (Exception exc) {
+
+                logger.error("@@@ User failed to be saved... Reason: " + exc.getMessage() + " @@@");
+            }
+            return "register success!";
+        } else {
+            logger.error("ERROR: user exist!");
+            return "ERROR: user exist!";
+        }
+    } // end of createUser()
+
+    // Process login
+    @Override
+    public String loginUser(String username, String password) {
+
+        // First, check if user exists
+//		if( user exist){
+//  			// check for password
+//  			if(password correct){
+//  				allow to login
+//  			} else { incorrect password }
+//  		} else { user doesn't exist }
+        if (sqlDB.findByUsername(username) == null && mongoDB.findByUsername(username) == null) {
+            return "no such user !";
+        } else {
+            if (!password.equals(sqlDB.findByUsername(username).getPassword())) {
+                return "Password is wrong !";
+            } else {
+                return "login success !";
+            }
+        }
+    }
+
+
+    @Override
+    public List<Object> showAll() {
+        return null;
+    }
+
 }

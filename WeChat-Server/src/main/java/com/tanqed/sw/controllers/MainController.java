@@ -15,16 +15,17 @@ import com.tanqed.sw.controllers.services.UserServices;
 /**
  * Restful server
  * 
- * Service end-points controller that maps to other controllers route: /login
- * route: /register route: /users
+ * Service end-points controller that maps to other controllers
+ * route: /login
+ * route: /register
+ * route: /users
  */
 @RestController
 public class MainController {
 
 	// Spring Boot injecting beans through @Autowired annotation
-
 	@Autowired
-	private UserServices userServices;
+	private UserServices userService;
 
 	// Server console logger
 	private static Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -35,10 +36,8 @@ public class MainController {
 	public String signUp(@RequestParam("username") String username, 
 						 @RequestParam("password") String password) throws Throwable {
 		logger.info("Before Creating User: " + username + "  " + password);
+		return userService.createUser(username,password);
 
-		userServices.createUser(username, password);
-
-		return null;
 	} // end of signUp end-point
 
 	/*
@@ -49,9 +48,8 @@ public class MainController {
 	@GetMapping("/login")
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		logger.info("Before Login User: " + username + "  " + password);
-		
-		userServices.loginUser(username, password);
-		return "";
+		return userService.loginUser(username,password);
+
 	} // end of /login end point
 
 
