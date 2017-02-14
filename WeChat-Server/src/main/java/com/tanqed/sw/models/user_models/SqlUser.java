@@ -6,7 +6,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class SqlUser {
 
     @Id
     @GeneratedValue
@@ -15,11 +15,11 @@ public class User {
     private String username;
     private String password;
 
-    public User() {
+    public SqlUser() {
 
     }
 
-    public User(String username, String password) {
+    public SqlUser(String username, String password) {
         this.username = username;
         this.password = password;
     }

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  do CRUD operations in the way we want. 
  Ref: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/ */
 
-public interface UserDAO  extends JpaRepository<User,Long>{
+public interface SqlDAO  extends JpaRepository<SqlUser,Long>{
 
-    public User findByUsername(String username);
+    public SqlUser findByUsername(String username);
 }
