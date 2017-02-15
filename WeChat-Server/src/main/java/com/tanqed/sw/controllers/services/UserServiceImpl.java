@@ -14,7 +14,7 @@ import com.tanqed.sw.models.user_models.MongoUser;
 import com.tanqed.sw.models.user_models.SqlDAO;
 import com.tanqed.sw.models.user_models.SqlUser;
 
-@Service
+@Service("LRImpl")
 public class UserServiceImpl implements UserServices {
 
     @Autowired

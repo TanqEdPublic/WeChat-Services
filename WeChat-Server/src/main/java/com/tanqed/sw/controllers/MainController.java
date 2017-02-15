@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class MainController {
 
 	// Spring Boot injecting beans through @Autowired annotation
 	@Autowired
+	@Qualifier("LRImpl")
 	private UserServices userService;
 
 	// Server console logger
@@ -48,8 +50,8 @@ public class MainController {
 	@GetMapping("/login")
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		logger.info("Before Login User: " + username + "  " + password);
-		return userService.loginUser(username,password);
 
+		return userService.loginUser(username,password);
 	} // end of /login end point
 
 
