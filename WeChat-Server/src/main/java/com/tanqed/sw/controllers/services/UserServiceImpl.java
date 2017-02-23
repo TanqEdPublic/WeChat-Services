@@ -1,6 +1,5 @@
 package com.tanqed.sw.controllers.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserServices {
 //         if( user doesn't exist){
 //			  try{
 //			  		// add user
-//			  } catch(){}
+//			  } catch(){ catch sql exception}
 //		   } else { user exist, return message, don't register }
 
 //      this should be like this:
