@@ -1,0 +1,89 @@
+<!-- THIS IS A BASE TEMPLATE FOR ALL OTHER TEMPLATES-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>WeChat</title>
+
+        <link rel="stylesheet" href="{{ indexCss }}" type="text/css"/>
+
+    {% endblock %}
+
+    {% block extraHead %}
+    {% endblock %}
+</head>
+<body>
+<div id="page">
+    <header id="header">
+        {% block header %}
+            <div id="header-inner">
+                <div id="logo">
+                    <h1><a href="#">TAN<span>QED</span></a></h1>
+                </div>
+                <div id="top-nav">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                <div class="clr"></div>
+            </div>
+        {% endblock %}
+    </header>
+    <div class="feature">
+        {% block feature %}
+            <div class="feature-inner">
+                <h1>    WeChat</h1>
+            </div>
+        {% endblock %}
+    </div>
+
+    <div id="mainBody">
+        {% block mainBody %}
+        {% endblock %}
+    </div>
+
+    <div id="footerblurb">
+        {% block footerblurb %}
+            <div id="footerblurb-inner">
+
+            <div class="column">
+                <h2><span>Heading</span></h2>
+                <p>
+                    <!--script>generateText(2)</script-->
+                </p>
+            </div>
+            <div class="column">
+                <h2><span>Heading</span></h2>
+                <p>
+                    <!--script>generateText(2)</script-->
+                </p>
+            </div>
+            <div class="column">
+                <h2><span>Heading</span></h2>
+                <p>
+                    <!--script>generateText(2)</script-->
+                </p>
+            </div>
+
+        {% endblock %}
+        </div>
+    </div>
+    <footer id="footer">
+        {% block footer %}
+            <div id="footer-inner">
+                <p> &copy;Copyright <a href="#">Your Site</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy
+                    Policy</a></p>
+                <div class="clr"></div>
+            </div>
+        {% endblock %}
+    </footer>
+</div>
+</body>
+
+</body>
+</html>
