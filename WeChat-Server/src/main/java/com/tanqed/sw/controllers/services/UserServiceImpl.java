@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import com.mysql.jdbc.exceptions.jdbc4.*;
 import com.tanqed.sw.models.user_models.MongoDAO;
 import com.tanqed.sw.models.user_models.MongoUser;
 import com.tanqed.sw.models.user_models.SqlDAO;
