@@ -30,7 +30,7 @@ public class ApplicationEntryPoint extends Application{
         // Injection of controllers happens here
         fxmlLoader.setControllerFactory(springContext::getBean);
         rootNode = fxmlLoader.load(); //Loads an object hierarchy from a FXML document
-    } 
+    }   
 
     // The main entry point for all JavaFX applications
     @Override
