@@ -1,37 +1,76 @@
-{% extends "layout.html" %}
+<!-- THIS IS A BASE TEMPLATE FOR ALL OTHER TEMPLATES-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-{% block extraHead %}
-    <link rel="stylesheet" href="{{ loginCss }}" type="text/css"/>
-{% endblock %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WeChat</title>
 
-{% block mainBody %}
-    <div class="loginContainer">
-        <form id="formLogin" action="/login" method="get">
-            <div class="border">
-                <img src="{{ login }}"/>
-                <p class="pline">username:</p>
-                <p class="pline">
-                    <input name="username" type="text" style="width: 240px; height: 15px;"/>
-                </p>
-                <p class="pline">password:</p>
-                <p class="pline">
-                    <input name="password" type="password" style="width: 240px; height: 15px;"/>
-                </p>
-                <p class="pline">
-                    <input id="rememberme" type="checkbox"/> <label for="rememberme">remenber
-                    me</label>
-                </p>
-                <p class="pline" style="margin-bottom: 10px">
-                    <button id="btnlogin" onclick="submit">
-                        <img src="{{ loginButton }}"/>
-                    </button>
-                </p>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/index.css") }}" type="text/css"/>
+
+</head>
+<body>
+    <div id="page">
+        <header id="header">
+            <div id="header-inner">
+                <div id="logo">
+                    <h1><a href="#">TAN<span>QED</span></a></h1>
+                </div>
+                <div id="top-nav">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                <div class="clr"></div>
             </div>
-        </form>
-        <div class="border" style="margin-top: 30px">
-            Do not have an account? <a href="#">REGISTER NOW</a>
+        </header>
+        <div class="feature">
+            <div class="feature-inner">
+                <h1> WeChat</h1>
+            </div>
         </div>
+
+        <div id="Body">
+
+        </div>
+
+        <div id="footerblurb">
+            <div id="footerblurb-inner">
+
+                <div class="column">
+                    <h2><span>Heading</span></h2>
+                    <p>
+                        <!--script>generateText(2)</script-->
+                    </p>
+                </div>
+                <div class="column">
+                    <h2><span>Heading</span></h2>
+                    <p>
+                        <!--script>generateText(2)</script-->
+                    </p>
+                </div>
+                <div class="column">
+                    <h2><span>Heading</span></h2>
+                    <p>
+                        <!--script>generateText(2)</script-->
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <footer id="footer">
+            <div id="footer-inner">
+                <p> &copy;Copyright <a href="#">Your Site</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy
+                    Policy</a></p>
+                <div class="clr"></div>
+            </div>
+        </footer>
     </div>
 
+    <script type="text/javascript" src="../static/js/build/bundle.js"></script>
+</body>
 
-{% endblock %}
+</html>
