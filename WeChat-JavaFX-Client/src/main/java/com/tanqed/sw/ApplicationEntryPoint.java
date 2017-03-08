@@ -29,14 +29,15 @@ public class ApplicationEntryPoint extends Application{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Main_View.fxml"));
         // Injection of controllers happens here
         fxmlLoader.setControllerFactory(springContext::getBean);
-        rootNode = fxmlLoader.load(); //Loads an object hierarchy from a FXML document
+        rootNode = fxmlLoader.load(); //Loads a nodes hierarchy from a FXML document
     }   
 
     // The main entry point for all JavaFX applications
     @Override
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(rootNode)); // set a scene with a root node
-        stage.show(); // show what is on stage (scene is displayed)
+        stage.show(); // show what is on stage (scene is displayed)#
+        
     }
 
     // This method is called when the application should stop, 
