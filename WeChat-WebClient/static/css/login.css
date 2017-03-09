@@ -1,0 +1,31 @@
+.pline {
+	margin: 6px 0 6px 0;
+	color: #1C6ED1;
+
+}
+
+.border {
+	border: 0px solid #CCC;
+	margin-left: 35%;
+	padding: 20px;
+	width: 350px;
+	background-color: aliceblue;
+
+}
+
+.loginContainer {
+	background-color: cornsilk;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#btnlogin {
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+}
+
+#btnlogin img {
+	height: 25px;
+	width:80px
+}
