@@ -5,8 +5,6 @@
  */
 package com.tanqed.sw.utilities;
 
-import javafx.fxml.Initializable;
-
 /**
  *
  * @author eduar

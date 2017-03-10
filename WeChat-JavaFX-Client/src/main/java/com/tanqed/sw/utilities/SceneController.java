@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component("ViewCtrl")
 public class SceneController implements Swappable{
-
+    
     @Autowired private MainViewController mainView;
     private static final Logger LOGGER = LoggerFactory.getLogger(SceneController.class);
     
@@ -38,16 +38,7 @@ public class SceneController implements Swappable{
             
         // what's need to be done
             // load fxml file into a node 
-//        FXMLLoader loader = new FXMLLoader();
-//        InputStream in = SceneController.class.getResourceAsStream(fxml);
-//        loader.setBuilderFactory(new JavaFXBuilderFactory());
-//        loader.setLocation(SceneController.class.getResource(fxml));
-        
-//        if (mainView.getBorderPane() != null) {
-//            LOGGER.info("Passed BorderPane is not null");
-//        } else {
-//            LOGGER.warn("BorderPane is null");
-//        }
+
         AnchorPane page;
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));

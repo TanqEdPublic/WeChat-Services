@@ -7,11 +7,9 @@ package com.tanqed.sw.controllers;
 
 import com.tanqed.sw.model.ListOfUsers;
 import com.tanqed.sw.utilities.SceneController;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -47,13 +45,13 @@ public class LoginController extends AnchorPane implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LOGGER.info("***** Initializing Login Controller *****");
+       // LOGGER.info("***** Initializing Login Controller *****");
     }    
     
     private static final Logger  LOGGER = LoggerFactory .getLogger(LoginController.class);
 
     public LoginController() {
-        LOGGER.info("***** Constructing Login Controller *****");
+       // LOGGER.info("***** Constructing Login Controller *****");
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 //        try {
 //            fxmlLoader.load();

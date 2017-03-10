@@ -6,62 +6,90 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.tanqed.sw.controllers.authentication.RegistrationController">
    <children>
-      <AnchorPane layoutX="250.0" layoutY="120.0" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="130.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="300.0">
+      <BorderPane layoutX="273.0" layoutY="161.0" prefHeight="10.0" prefWidth="300.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="220.0" promptText="login">
+                  <Label text="Login">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Password">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField promptText="password">
+                  <PasswordField>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Register">
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <VBox>
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Register">
                      <VBox.margin>
-                        <Insets left="190.0" right="20.0" />
+                        <Insets bottom="5.0" left="230.0" right="5.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <HBox prefHeight="33.0" prefWidth="277.0">
-                     <VBox.margin>
-                        <Insets top="32.0" />
-                     </VBox.margin>
+                  <HBox prefHeight="20.0" prefWidth="200.0">
                      <children>
-                        <Label text="Have an account?" textAlignment="CENTER">
+                        <Label prefHeight="31.0" prefWidth="267.0" text="Have an account?">
                            <font>
-                              <Font size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Hyperlink text="Sign in!">
-                           <font>
-                              <Font size="17.0" />
+                              <Font size="15.0" />
                            </font>
                            <padding>
-                              <Insets bottom="10.0" left="14.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
+                        </Label>
+                        <Hyperlink fx:id="regLink" onAction="#goToLogin" prefHeight="29.0" prefWidth="152.0" text="Login">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="60.0" />
                            </HBox.margin>
                         </Hyperlink>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
-         </children>
-      </AnchorPane>
+         </bottom>
+      </BorderPane>
    </children>
-</AnchorPane>
+</Pane>

@@ -35,19 +35,19 @@ public class MainViewController implements Initializable{
     private static final Logger LOGGER = LoggerFactory.getLogger(MainViewController.class);
     
     public MainViewController(){
-        LOGGER.info("#####MainViewController is constructed...#####");
+        //LOGGER.info("#####MainViewController is constructed...#####");
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources){
        // System.out.println("### Location: " + resources.toString());
-        LOGGER.info("##### Initializing components... #####");
+       // LOGGER.info("##### Initializing components... #####");
         if(borderPane!=null){
-            LOGGER.info("##### Adding Element to Border Pane #####\n" 
-                        + loginControl.getChildren().toString() + "\n ##################");
+           // LOGGER.info("##### Adding Element to Border Pane #####\n" 
+           //             + loginControl.getChildren().toString() + "\n ##################");
             
-            LOGGER.info(borderPane.topProperty().getName());
-            LOGGER.info(viewCtrl.toString());
+         //   LOGGER.info(borderPane.topProperty().getName());
+         //   LOGGER.info(viewCtrl.toString());
             try {
                 LOGGER.info("Trying to load fxml LOGIN");
                 viewCtrl.replaceSceneContent("/fxml/Login.fxml");
