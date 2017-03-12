@@ -1,0 +1,29 @@
+.text1 {
+    margin: 6px 0 6px 0;
+    color: #1C6ED1;
+}
+
+.text2 {
+    margin: 6px 0 6px 0;
+    color: #FF8040;
+}
+
+.text3 {
+    margin: 6px 0 6px 0;
+    color: #FF0000;
+}
+
+.registerContainer {
+	background-color: cornsilk;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.border {
+	border: 0px solid #CCC;
+	margin-left: 35%;
+	padding: 20px;
+	width: 350px;
+	background-color: aliceblue;
+
+}

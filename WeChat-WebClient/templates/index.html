@@ -8,14 +8,17 @@
     <div class="loginContainer">
         <form id="formLogin" action="/log_in" method="post">
             <div class="border">
-                <img src="{{ login }}"/>
+                <img src="{{ url_for("static", filename="images/login.jpg") }}"/>
+                <p class="errMsg">
+                    {{get_flashed_messages()[0]}}
+                </p>
                 <p class="pline">username:</p>
                 <p class="pline">
-                    <input name="username" type="text" style="width: 240px; height: 15px;"/>
+                    <input name="username" type="text" style="width: 240px; height: 15px;" placeholder="enter username"/>
                 </p>
                 <p class="pline">password:</p>
                 <p class="pline">
-                    <input name="password" type="password" style="width: 240px; height: 15px;"/>
+                    <input name="password" type="password" style="width: 240px; height: 15px;" placeholder="password"/>
                 </p>
                 <p class="pline">
                     <input id="rememberme" type="checkbox"/> <label for="rememberme">remenber
@@ -23,16 +26,14 @@
                 </p>
                 <p class="pline" style="margin-bottom: 10px">
                     <button id="btnlogin" onclick="submit">
-                        <img src="{{ loginButton }}"/>
+                        <img src="{{ url_for("static", filename="images/loginButton.jpg") }}"/>
                     </button>
                 </p>
-                <p class="pline">
-                    {{ msg }}
-                </p>
+
             </div>
         </form>
         <div class="border" style="margin-top: 30px">
-            Do not have an account? <a href="#">REGISTER NOW</a>
+            Do not have an account? <a href="/register">REGISTER NOW</a>
         </div>
     </div>
 

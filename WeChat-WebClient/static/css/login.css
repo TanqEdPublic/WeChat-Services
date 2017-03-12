@@ -4,6 +4,11 @@
 
 }
 
+.errMsg {
+	margin: 6px 0 6px 0;
+	color: crimson;
+}
+
 .border {
 	border: 0px solid #CCC;
 	margin-left: 35%;

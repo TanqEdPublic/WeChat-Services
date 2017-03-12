@@ -1,16 +1,14 @@
-from flask import Flask, url_for, render_template, request, json
+from flask import Flask, url_for, render_template, request, json, flash
 import requests
-from celery import Celery
-import time
 
 app = Flask(__name__)
+app.secret_key = "123"
 
 
 @app.route('/')
 def index():
-    loginButton = url_for("static", filename="images/loginButton.jpg")
-    login = url_for("static", filename="images/login.jpg")
-    return render_template("index.html",loginButton=loginButton,login=login)
+    return render_template("index.html")
+
 
 def ServerLogin(user,psd):
     params = {
@@ -18,9 +16,9 @@ def ServerLogin(user,psd):
         'password': psd
     }
     url = 'http://34.251.207.109:8080/login'
-
     r = requests.get(url, params).text
     return r
+
 
 @app.route('/log_in',methods=['POST'])
 def login_get():
@@ -28,8 +26,45 @@ def login_get():
     username = form.get('username')
     password = form.get('password')
     re = ServerLogin(username,password)
-    return re
+    if(re == 'login success !'):
+        flash("login success !")
+    else:
+        flash("username/password is wrong!")
 
+    return render_template("index.html")
+
+
+@app.route('/register')
+def register_init():
+    return render_template("register.html")
+
+
+def ServerRegister(user,psd):
+    params = {
+        'username': user,
+        'password': psd
+    }
+    url = 'http://34.251.207.109:8080/sign-up'
+    r = requests.post(url, params).text
+    return r
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    form = request.form
+    username = form.get('username')
+    password = form.get('password')
+    re = ServerRegister(username, password)
+    if(re == 'ERROR: user exist!'):
+        flash(re)
+    elif not username:
+        flash("please input username !")
+    elif not password:
+        flash("please input password !")
+    elif(re == 'register success!'):
+        flash(re)
+
+    return render_template("register.html")
 
 
 if __name__ == '__main__':
