@@ -5,36 +5,41 @@
  */
 package com.tanqed.sw.controllers.authentication;
 
-import com.tanqed.sw.NexusCore;
+import com.tanqed.sw.Application;
+import com.tanqed.sw.ConfigurationControllers;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  *
  * @author eduar
  */
-@Component
 public class LoginPageController {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginPageController.class);
-    private final NexusCore nexus;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginPageController.class);
+
+    @Qualifier("regView")
     @Autowired
-    public LoginPageController(NexusCore nexus) {
+    private ConfigurationControllers.View view;
+
+    public LoginPageController() {
         LOGGER.info("Creating Login Page Controller");
-        LOGGER.info("Nexus ID: " + nexus.toString());
-        this.nexus = nexus;
     }
-    
-    
-    public void goToReg(){
+
+    @FXML
+    public void goToReg() {
         // Navigate to registration scene
-        // Deligate scene swapping to a Nexus
-        nexus.goToRegistarionView();
+        try {
+            LOGGER.info("##### Inside navigation method #####");
+            view.setViewToNull();
+        } catch (Exception e) {
+            //e.printStackTrace();#
+            Application.stage.setScene(new Scene(view.getView()));
+        }
     }
-    
-    
+
 }

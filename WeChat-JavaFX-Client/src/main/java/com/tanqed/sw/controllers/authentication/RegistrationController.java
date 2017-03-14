@@ -5,10 +5,13 @@
  */
 package com.tanqed.sw.controllers.authentication;
 
-import com.tanqed.sw.NexusCore;
+import com.tanqed.sw.Application;
+import com.tanqed.sw.ConfigurationControllers;
+import javafx.scene.Scene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,29 +22,21 @@ import org.springframework.stereotype.Component;
 public class RegistrationController {
     
     private final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
-    private NexusCore nexusCore;
-
-    public RegistrationController() {
-        LOGGER.info("THIS WAS NEVER TOUCHED or WAS IT??");
-        nexusCore = null;
-    }
-
+    
+    @Qualifier("loginView")
     @Autowired
-    public RegistrationController(NexusCore nexus) {
-        LOGGER.info("Creating Registration Page Controller");
-        LOGGER.info("Nexus ID: " + nexus.toString());
-        this.nexusCore = nexus;
-        
-        LOGGER.info("Nexus reference in Reg Controller" + nexusCore.toString());
-    }
+    private ConfigurationControllers.View view;
+
     
     public void goToLogin(){
-        
-        if(nexusCore == null){
-            LOGGER.info("NEXUS IS NULL ");
-        }else{
-            nexusCore.goToLoginView();
+        // Navigate to registration scene
+        try {
+            LOGGER.info("##### Inside navigation method #####");
+            view.setViewToNull();
+        } catch (Exception e) {
+            //e.printStackTrace();#
+            Application.stage.setScene(new Scene(view.getView()));
         }
-    }
+    } // end of goToLogin
     
-}
+} // end of class
