@@ -16,13 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-/**
- * Date: 27.08.15
- * Time: 11:04
- *
- * @author Ruslan Molchanov (ruslanys@gmail.com)
- * @author http://mruslan.com
- */
 @Configuration
 public class ConfigurationControllers {
 
@@ -37,10 +30,6 @@ public class ConfigurationControllers {
         return loadView("fxml/authentication/RegistrationPage.fxml");
     }
 
-    /**
-     * Именно благодаря этому методу мы добавили контроллер в контекст спринга,
-     * и заставили его сделать произвести все необходимые инъекции.
-     */
     
     @Bean
     public LoginPageController loginPageController()throws IOException {
@@ -53,11 +42,6 @@ public class ConfigurationControllers {
     }
     
     
-    /**
-     * Самый обыкновенный способ использовать FXML загрузчик.
-     * Как раз-таки на этом этапе будет создан объект-контроллер,
-     * произведены все FXML инъекции и вызван метод инициализации контроллера.
-     */
     protected View loadView(String url) throws IOException {
         InputStream fxmlStream = null;
         try {
@@ -72,10 +56,6 @@ public class ConfigurationControllers {
         }
     }
 
-    /**
-     * Класс - оболочка: контроллер мы обязаны указать в качестве бина,
-     * а view - представление, нам предстоит использовать в точке входа {@link Application}.
-     */
     public class View {
         private Parent view;
         private Object controller;

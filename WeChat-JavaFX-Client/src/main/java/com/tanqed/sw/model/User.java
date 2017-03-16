@@ -5,6 +5,7 @@
  */
 package com.tanqed.sw.model;
 
+import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class User {
+public class User implements Serializable{
 
     /*
         With JavaFX it's common to use Properties for all fields of a model class.
@@ -24,6 +25,7 @@ public class User {
         in sync with the data.
     */
     
+    private static final long serialVersionUID = 1L;
     private final StringProperty username;
     private final StringProperty password;
 
