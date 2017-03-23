@@ -1,6 +1,5 @@
-package com.tanqed.sw.controllers.services;
+package com.tanqed.sw.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import com.tanqed.sw.models.user_models.MongoDAO;
-import com.tanqed.sw.models.user_models.MongoUser;
-import com.tanqed.sw.models.user_models.SqlDAO;
+import com.tanqed.sw.repositories.MongoDAO;
+import com.tanqed.sw.repositories.SqlDAO;
 import com.tanqed.sw.models.user_models.SqlUser;
 
 @Service("LRImpl")
@@ -51,7 +49,7 @@ public class UserServiceImpl implements UserServices {
             return "registered";
         } else {
         	logger.error("@@@ User: " + username + " Already Exists @@@");
-            return "deplicate_user";
+            return "duplicate_user";
         }
     } // end of createUser()
 

@@ -1,4 +1,4 @@
-package com.tanqed.sw.controllers.services;
+package com.tanqed.sw.services;
 
 import java.util.List;
 
