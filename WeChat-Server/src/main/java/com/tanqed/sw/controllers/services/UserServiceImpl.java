@@ -25,57 +25,64 @@ public class UserServiceImpl implements UserServices {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
-    // Create new user for MySql and Mongo databases;
+    // Method returns a status of a registration operation in String
+    // Method accepts two parameters: username and password to register into DB
     @Override
     public String createUser(String username, String password) throws MySQLIntegrityConstraintViolationException {
 
-        // Check if db entry with this username already exist
-
-//         if( user doesn't exist){
-//			  try{
-//			  		// add user
-//			  } catch(){}
-//		   } else { user exist, return message, don't register }
-
-//      this should be like this:
-//		if (sqlDB.findByUsername(username) == null && mongoDB.findByUsername(username) == null){
-//      but for the first time running(there is no user table in mysql) should change to this:
+    	// Before creating new user, we check if user already exist.
+    	// Database querying is delegated to Hibernate API. 
+    	// Our interface SqlDAO extends repository that implements
+    	// basic CRUD operations. Read queries return POJO Entity object that
+    	// is bound to SqlDAO interface.
         if (sqlDB.findByUsername(username) == null) {
             try {
+            	// if user is new, save to database
                 sqlDB.save(new SqlUser(username, password));
                 //mongoDB.save(new MongoUser(username, password));
             } catch (Exception exc) {
 
+            	// Need to handle other exceptions here, like invalid entry to DB,
+            	// preferably on a Clients before sending Request
                 logger.error("@@@ User failed to be saved... Reason: " + exc.getMessage() + " @@@");
             }
-            return "register success!";
+            
+            logger.error("@@@ User: " + username + " is registered! @@@");
+            return "registered";
         } else {
-            logger.error("ERROR: user exist!");
-            return "ERROR: user exist!";
+        	logger.error("@@@ User: " + username + " Already Exists @@@");
+            return "deplicate_user";
         }
     } // end of createUser()
 
-    // Process login
+    
+    // Method returns a status of login operation in String
+    // Method accepts two parameters: username and password 
+    // to perform checks against database.
     @Override
     public String loginUser(String username, String password) {
 
-        // First, check if user exists
-//		if( user exist){
-//  			// check for password
-//  			if(password correct){
-//  				allow to login
-//  			} else { incorrect password }
-//  		} else { user doesn't exist }
+    	// Check if user exist in DB. Delegate this task to SqlDAO repository.
+    	// Hibernate provides a method findBy___(param) to perform querying.
+    	// If you want, you can easily switch to MongoDB
         if (sqlDB.findByUsername(username) == null /*&& mongoDB.findByUsername(username) == null*/) {
-            return "no such user !";
+        	logger.info("@@@ Wrong Username! @@@");
+            return "no_user";
         } else {
+        	// If user exist in DB, Hibernate will return a POJO of SqlUser. 
+        	// We can access it's password field via getter and compare with
+        	// password sent in the request from a Client.
             if (!password.equals(sqlDB.findByUsername(username).getPassword())) {
-                return "Password is wrong !";
+            	logger.info("@@@ Wrong Password! @@@");
+                return "wrong_pass";
             } else {
-                return "login success !";
+            	// if username/password pass validation, return status back to Client
+            	logger.info("@@@ Logged In! @@@");
+                return "logged";
             }
         }
-    }
+    } // end of loginUser this method can be refactored to return a Authentication Token
+    	// returned token than can be placed into response header and sent to Client.
 
 
     @Override
