@@ -10,8 +10,10 @@ import com.tanqed.sw.ConfigurationControllers;
 import com.tanqed.sw.security.AuthenticationControl;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class RegistrationController {
     
     private final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
-    @Autowired AuthenticationControl authenticationControl;
+    @Autowired AuthenticationControl authenticator;
     
     @Qualifier("loginView")
     @Autowired
@@ -35,23 +37,34 @@ public class RegistrationController {
     
     @FXML TextField loginField;
     @FXML PasswordField passwordField;
-    
+    @FXML Label statusMessage;
     
     @FXML
     public void goToLogin(){
         // Navigate to registration scene
         try {
             LOGGER.info("##### Inside navigation method #####");
-            view.setViewToNull();
+            view.setParentViewToNull();
         } catch (Exception e) {
             //e.printStackTrace();#
-            Application.stage.setScene(new Scene(view.getView()));
+            Application.stage.setScene(new Scene(view.getParentView()));
         }
     } // end of goToLogin
     
     @FXML
     public void register(){
-        authenticationControl.register(loginField.getText(), passwordField.getText());
+        
+        if(authenticator.register(loginField.getText(), passwordField.getText())){
+           statusMessage.setText("User exist! Try another...");
+           statusMessage.setTextFill(Color.RED);
+        }else{
+           statusMessage.setText("Registration Successful");
+           statusMessage.setTextFill(Color.GREEN);
+           
+           // go to login
+        }
+        
+        
         loginField.clear();
         passwordField.clear();
     }

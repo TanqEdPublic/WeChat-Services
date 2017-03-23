@@ -11,8 +11,10 @@ import com.tanqed.sw.security.AuthenticationControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class LoginPageController {
     
     @FXML private TextField loginField;
     @FXML  private PasswordField passwordField;
-    
+    @FXML Label statusMessage;
     
     
     
@@ -49,19 +51,30 @@ public class LoginPageController {
         // Navigate to registration scene
         try {
             LOGGER.info("##### Inside navigation method #####");
-            view.setViewToNull();
+            view.setParentViewToNull();
         } catch (Exception e) {
             //e.printStackTrace();#
-            Application.stage.setScene(new Scene(view.getView()));
+            Application.stage.setScene(new Scene(view.getParentView()));
         }
     }
     
     @FXML
     public void loginSubmit(ActionEvent event){
         
-        if(!authenticator.login(loginField.getText(), passwordField.getText())){
+        if(authenticator.login(loginField.getText(), passwordField.getText())){
+            // login produce error message
+            statusMessage.setText("Username/Password is incorrect");
+            statusMessage.setTextFill(Color.RED);
+            statusMessage.setText("");
             
+        }else{
+            // navigate to chat room
+            statusMessage.setText("Successfully logged in!");
+            statusMessage.setTextFill(Color.GREEN);
         } 
+        
+        loginField.clear();
+        passwordField.clear();
     }
 
 

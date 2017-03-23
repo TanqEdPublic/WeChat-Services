@@ -15,14 +15,30 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+    Configuration-annotated class. Typically consists of @Bean-annotated
+    methods that define instantiation, configuration, and initialization logic
+    for objects that will be managed by the Spring IoC container.
+*/
 
 @Configuration
 public class ConfigurationControllers {
 
 
-    @Bean(name = "loginView")
+    
+    /*
+        This methods return instances of FXML views. When application compiles,
+        Spring instantiate them. You can set this instance as a new scene on an
+        application stage. Each view also have an individual controller to 
+        drive GUI. 
+    */
+    
+    @Bean(name = "loginView") // we can autowire particular view we want using naming conventions
     public View getLoginView() throws IOException {
-        return loadView("fxml/authentication/LoginPage.fxml");
+        return loadView("fxml/authentication/LoginPage.fxml"); 
+        /* Method loadView() return object of type View class that is declaired inside configuration file.
+           It excepts path to a fxml file as a parameter.
+        */ 
     }
     
     @Bean(name = "regView")
@@ -41,7 +57,7 @@ public class ConfigurationControllers {
         return (RegistrationController) getRegistrationView().getController();
     }
     
-    
+    // Standard way of loading FXML files into memory
     protected View loadView(String url) throws IOException {
         InputStream fxmlStream = null;
         try {
@@ -57,23 +73,23 @@ public class ConfigurationControllers {
     }
 
     public class View {
-        private Parent view;
+        private Parent parentView;
         private Object controller;
         private Logger logger = LoggerFactory.getLogger(View.class);
         
         
         public View(Parent view, Object controller) {
-            this.view = view;
+            this.parentView = view;
             this.controller = controller;
             logger.info("New FX Controller created! ID: " + this.toString());
         }
 
-        public Parent getView() {
-            return view;
+        public Parent getParentView() {
+            return parentView;
         }
 
-        public void setView(Parent view) {
-            this.view = view;
+        public void setParentView(Parent parentView) {
+            this.parentView = parentView;
         }
 
         public Object getController() {
@@ -84,9 +100,9 @@ public class ConfigurationControllers {
             this.controller = controller;
         }
         
-        public void setViewToNull(){
-            if(view != null){
-                view.getScene().setRoot(null);
+        public void setParentViewToNull(){
+            if(parentView != null){
+                parentView.getScene().setRoot(null);
             }
         }
     }

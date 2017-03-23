@@ -18,7 +18,7 @@
          <left>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Login">
+                  <Label text="Username: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -26,7 +26,7 @@
                         <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Password">
+                  <Label text="Password:">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -61,6 +61,11 @@
                         <Insets bottom="5.0" left="230.0" right="5.0" top="10.0" />
                      </VBox.margin>
                   </Button>
+                  <Label fx:id="statusMessage" prefHeight="27.0" prefWidth="294.0" textFill="#d71313">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
                   <HBox prefHeight="20.0" prefWidth="200.0">
                      <children>
                         <Label prefHeight="31.0" prefWidth="267.0" text="Have an account?">
