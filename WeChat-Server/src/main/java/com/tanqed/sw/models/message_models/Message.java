@@ -14,6 +14,9 @@ public class Message {
 	@Getter @Setter private String room;
 	@Getter @Setter private String message;
 
+	public Message() {
+	}
+
 	public Message(String username, String date, String room, String message) {
 		this.username = username;
 		this.date = date;

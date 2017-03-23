@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tanqed.sw.services.UserServices;
+import com.tanqed.sw.userServices.UserServices;
 
 /**
  * Restful server

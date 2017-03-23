@@ -1,4 +1,4 @@
-package com.tanqed.sw.services;
+package com.tanqed.sw.userServices;
 
 import java.util.List;
 
