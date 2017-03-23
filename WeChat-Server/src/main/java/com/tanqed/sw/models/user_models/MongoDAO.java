@@ -4,5 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface MongoDAO extends MongoRepository<MongoUser, String>{
 
-	public MongoUser findByUsername(String username);
+	//public MongoUser findByUsername(String usernWeChat-Servicesame);
 }

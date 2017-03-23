@@ -40,10 +40,10 @@ public class UserServiceImpl implements UserServices {
 //      this should be like this:
 //		if (sqlDB.findByUsername(username) == null && mongoDB.findByUsername(username) == null){
 //      but for the first time running(there is no user table in mysql) should change to this:
-        if (mongoDB.findByUsername(username) == null) {
+        if (sqlDB.findByUsername(username) == null) {
             try {
                 sqlDB.save(new SqlUser(username, password));
-                mongoDB.save(new MongoUser(username, password));
+                //mongoDB.save(new MongoUser(username, password));
             } catch (Exception exc) {
 
                 logger.error("@@@ User failed to be saved... Reason: " + exc.getMessage() + " @@@");
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserServices {
 //  				allow to login
 //  			} else { incorrect password }
 //  		} else { user doesn't exist }
-        if (sqlDB.findByUsername(username) == null && mongoDB.findByUsername(username) == null) {
+        if (sqlDB.findByUsername(username) == null /*&& mongoDB.findByUsername(username) == null*/) {
             return "no such user !";
         } else {
             if (!password.equals(sqlDB.findByUsername(username).getPassword())) {
