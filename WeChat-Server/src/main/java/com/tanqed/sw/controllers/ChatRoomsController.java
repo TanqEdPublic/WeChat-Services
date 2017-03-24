@@ -44,9 +44,11 @@ public class ChatRoomsController {
 	@PostMapping("/send-msg")
 	public String postMessageToPublic(@RequestBody Message message){
 
-		// call ChatService to store message in repository.
-		Message msg = new Message(message.getUsername(),message.getDate(),message.getRoom(),message.getMessage());
-		return messageService.addMessage(msg);
+		// Message object can be reused by implementing Serializable interface to a Message object
+		
+		//Message msg = new Message(message.getUsername(),message.getDate(),message.getRoom(),message.getMessage());
+		// call ChatService to store message in repository
+		return messageService.addMessage(message);
 	}
 
 }

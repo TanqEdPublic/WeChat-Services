@@ -25,11 +25,11 @@ public class MessageServiceImpl implements MessageServices {
     @Override
     public String addMessage(Message message) {
         try {
-            String username = message.getUsername();
-            String date = message.getDate();
-            String room = message.getRoom();
-            String msg = message.getMessage();
-            mongoDB.save(new Message(username,date,room,msg));
+//            String username = message.getUsername();
+//            String date = message.getDate();
+//            String room = message.getRoom();
+//            String msg = message.getMessage();
+            mongoDB.save(message);
         } catch (Exception exc) {
 
             // Need to handle other exceptions here, like invalid entry to DB,
