@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block extraHead %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/publicChat.css") }}" type="text/css"/>
+{% endblock %}
+
+{% block mainBody %}
+    <div id="chatContainer">
+        <div id="chatBody">
+            <form id="formSendMessage" action="/public-chat" method="post">
+                <div class="layout">
+                    <div id="chatDisplay" class="layout">
+                        <textarea id="displaytxtarea" cols="20" readonly>{{messages}}</textarea>
+
+                    </div>
+                    <div id="chatLogo" class="layout">
+                        <button id="btnClose" class="layout">close</button>
+                        <img id="imgLogo" src="{{ url_for("static", filename="images/logo.png") }}"/>
+
+                    </div>
+                </div>
+                <div id="chatInput" class="layout">
+                    <hr id="line">
+
+                    <textarea id="inputtxtarea" name="sendmessage" class="layout" cols="20"></textarea>
+                    <button id="btnSend" class="layout" onclick="submit">Send</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}
