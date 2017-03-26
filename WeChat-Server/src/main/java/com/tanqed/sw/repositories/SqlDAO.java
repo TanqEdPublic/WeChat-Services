@@ -1,5 +1,6 @@
-package com.tanqed.sw.models.user_models;
+package com.tanqed.sw.repositories;
 
+import com.tanqed.sw.models.user_models.SqlUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /* Custom interface that extends JpaRepository to use basic CRUD operations 
