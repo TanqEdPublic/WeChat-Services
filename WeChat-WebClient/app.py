@@ -26,7 +26,11 @@ def login_get():
     username = form.get('username')
     password = form.get('password')
     re = ServerLogin(username,password)
-    if(re == 'login success !'):
+    if not username:
+        flash("please input username !")
+    elif not password:
+        flash("please input password !")
+    elif(re == 'logged'):
         flash("login success !")
     else:
         flash("username/password is wrong!")
@@ -55,14 +59,14 @@ def register():
     username = form.get('username')
     password = form.get('password')
     re = ServerRegister(username, password)
-    if(re == 'ERROR: user exist!'):
-        flash(re)
-    elif not username:
+    if not username:
         flash("please input username !")
     elif not password:
         flash("please input password !")
-    elif(re == 'register success!'):
-        flash(re)
+    elif(re == 'duplicate_user'):
+        flash('ERROR: user exist!')
+    elif(re == 'registered'):
+        flash('register success!')
 
     return render_template("register.html")
 
