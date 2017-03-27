@@ -10,7 +10,7 @@
             <form id="formSendMessage" action="/public-chat" method="post">
                 <div class="layout">
                     <div id="chatDisplay" class="layout">
-                        <textarea id="displaytxtarea" cols="20" readonly>{{messages}}</textarea>
+                        <textarea id="displaytxtarea" name="existmessage" cols="20" readonly>{{ messages }}</textarea>
 
                     </div>
                     <div id="chatLogo" class="layout">
@@ -26,6 +26,9 @@
                     <button id="btnSend" class="layout" onclick="submit">Send</button>
 
                 </div>
+            </form>
+            <form action="/public-chat">
+                <button id="btnGetnew" onclick="submit">Get New Message</button>
             </form>
         </div>
 
