@@ -1,6 +1,7 @@
-from flask import Flask, url_for, render_template, request, json, flash, redirect, session
+from flask import Flask, url_for, render_template, request, json, jsonify, flash, redirect, session
 import requests
 import datetime
+import time
 
 
 app = Flask(__name__)
@@ -83,21 +84,33 @@ def sendMessage():
     global user
     form = request.form
     msg = form.get('sendmessage')
-    url = 'http://34.251.207.109:8080/chatroom/send-msg'
-    now = datetime.datetime.now()
-    time = now.strftime("%Y-%m-%d %H:%M:%S")
-    data = {'username': user, 'date': time, 'room': 'public', 'message': msg}
-    r = requests.post(url, json = data).text
-    displayMeaaage = form.get('existmessage')+"\n"+time+"  "+ user +": \n"+msg
-    if(r == 'success'):
-        return render_template("publicChat.html",messages = displayMeaaage)
+    if (msg != ""):
+        url = 'http://34.251.207.109:8080/chatroom/send-msg'
+        now = datetime.datetime.now()
+        time = now.strftime("%Y-%m-%d %H:%M:%S")
+        data = {'username': user, 'date': time, 'room': 'public', 'message': msg}
+        r = requests.post(url, json = data).text
+        displayMeaaage = form.get('existmessage')+"\n"+time+"  "+ user +": \n"+msg
+        if(r == 'success'):
+            getNewMsg()
+            return render_template("publicChat.html",messages = displayMeaaage)
+        else:
+            return "error"
     else:
-        return "error"
+        displayMeaaage = form.get('existmessage') + "\n" + "Please input message !!!"
+        return render_template("publicChat.html", messages=displayMeaaage)
+
+@app.route('/public-chat/new', methods=['GET'])
+def getNewMsg():
+    URL = 'http://34.251.207.109:8080/chatroom/public'
+    R = requests.get(URL)
+    displayMeaaage = json.loads(R.text)
+    #displayMeaaage = ""
+    #for i in R:
+    #    displayMeaaage = displayMeaaage + i['date'] + i['username'] + ": \n" + i['message'] + "\n"
+    return render_template("publicChat.html",messages = displayMeaaage)
 
 
-@app.route('/public-chat', methods=['GET'])
-def getNew():
-    return render_template("publicChat.html")
 
 
 if __name__ == '__main__':
