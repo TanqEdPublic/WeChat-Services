@@ -104,10 +104,12 @@ def sendMessage():
 def getNewMsg():
     URL = 'http://34.251.207.109:8080/chatroom/public'
     R = requests.get(URL)
-    displayMeaaage = json.loads(R.text)
-    #displayMeaaage = ""
-    #for i in R:
-    #    displayMeaaage = displayMeaaage + i['date'] + i['username'] + ": \n" + i['message'] + "\n"
+    #displayMeaaage = json.loads(R.text)
+    Parsed_json = json.loads(R.text)
+    displayMeaaage = ""
+    for i in Parsed_json:
+        displayMeaaage += displayMeaaage + i['date'] + " " + i['username'] + ": \n" + i['message'] + "\n\n"
+
     return render_template("publicChat.html",messages = displayMeaaage)
 
 
