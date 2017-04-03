@@ -108,7 +108,7 @@ def getNewMsg():
     Parsed_json = json.loads(R.text)
     displayMeaaage = ""
     for i in Parsed_json:
-        displayMeaaage += displayMeaaage + i['date'] + " " + i['username'] + ": \n" + i['message'] + "\n\n"
+        displayMeaaage = displayMeaaage + i['date'] + " " + i['username'] + ": \n" + i['message'] + "\n\n"
 
     return render_template("publicChat.html",messages = displayMeaaage)
 
