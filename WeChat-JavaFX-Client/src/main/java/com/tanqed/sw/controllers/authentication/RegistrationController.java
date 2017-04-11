@@ -7,7 +7,7 @@ package com.tanqed.sw.controllers.authentication;
 
 import com.tanqed.sw.Application;
 import com.tanqed.sw.ConfigurationControllers;
-import com.tanqed.sw.security.AuthenticationControl;
+import com.tanqed.sw.security.Authenticator;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class RegistrationController {
     
     private final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
-    @Autowired AuthenticationControl authenticator;
+    @Qualifier("authent") @Autowired Authenticator authenticator;
     
     @Qualifier("loginView")
     @Autowired
@@ -54,7 +54,10 @@ public class RegistrationController {
     @FXML
     public void register(){
         
-        if(authenticator.register(loginField.getText(), passwordField.getText())){
+        boolean status = authenticator.register(loginField.getText(), passwordField.getText());
+        LOGGER.info("##### Registration Submission status returned... #####" + status);
+        
+        if(!status){
            statusMessage.setText("User exist! Try another...");
            statusMessage.setTextFill(Color.RED);
         }else{

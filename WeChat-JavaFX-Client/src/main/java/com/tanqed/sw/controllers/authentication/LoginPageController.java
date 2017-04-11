@@ -7,7 +7,7 @@ package com.tanqed.sw.controllers.authentication;
 
 import com.tanqed.sw.Application;
 import com.tanqed.sw.ConfigurationControllers;
-import com.tanqed.sw.security.AuthenticationControl;
+import com.tanqed.sw.security.Authenticator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -32,8 +32,9 @@ public class LoginPageController {
     @Autowired
     private ConfigurationControllers.View view;
     
+    @Qualifier("authent")
     @Autowired
-    private AuthenticationControl authenticator;
+    private Authenticator authenticator;
     
     
     @FXML private TextField loginField;
@@ -60,12 +61,13 @@ public class LoginPageController {
     
     @FXML
     public void loginSubmit(ActionEvent event){
+        boolean status = authenticator.login(loginField.getText(), passwordField.getText());
         
-        if(authenticator.login(loginField.getText(), passwordField.getText())){
+        LOGGER.info("##### Login Submission status returned... #####" + status);
+        if(!status){
             // login produce error message
             statusMessage.setText("Username/Password is incorrect");
             statusMessage.setTextFill(Color.RED);
-            statusMessage.setText("");
             
         }else{
             // navigate to chat room
