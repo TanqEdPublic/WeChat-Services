@@ -2,6 +2,7 @@ package com.tanqed.sw;
 
 import com.tanqed.sw.controllers.authentication.LoginPageController;
 import com.tanqed.sw.controllers.authentication.RegistrationController;
+import com.tanqed.sw.controllers.chatrooms.PublicChatRoomController;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Lazy;
 
 /*
     Configuration-annotated class. Typically consists of @Bean-annotated
@@ -46,6 +48,16 @@ public class ConfigurationControllers {
         return loadView("fxml/authentication/RegistrationPage.fxml");
     }
 
+    @Bean(name = "chatRoomView")
+    public View getChatRoomView() throws IOException {
+        return loadView("fxml/PublicChatRoom.fxml");
+    }
+    
+    
+    @Bean 
+    public PublicChatRoomController chatRoomController() throws IOException{
+        return (PublicChatRoomController) getChatRoomView().getController();
+    }
     
     @Bean
     public LoginPageController loginPageController()throws IOException {

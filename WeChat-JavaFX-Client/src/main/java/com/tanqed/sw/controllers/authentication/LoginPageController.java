@@ -30,7 +30,11 @@ public class LoginPageController {
 
     @Qualifier("regView")
     @Autowired
-    private ConfigurationControllers.View view;
+    private ConfigurationControllers.View regView;
+    
+    @Qualifier("chatRoomView")
+    @Autowired
+    private ConfigurationControllers.View chatView;
     
     @Qualifier("authent")
     @Autowired
@@ -45,6 +49,9 @@ public class LoginPageController {
     
     public LoginPageController() {
         LOGGER.info("Creating Login Page Controller");
+        if(authenticator == null){
+            LOGGER.info("@@@@ AUTHENTICATOR IS NULL IN LoginController! @@@@");
+        }
     }
 
     @FXML
@@ -52,10 +59,10 @@ public class LoginPageController {
         // Navigate to registration scene
         try {
             LOGGER.info("##### Inside navigation method #####");
-            view.setParentViewToNull();
+            regView.setParentViewToNull();
         } catch (Exception e) {
             //e.printStackTrace();#
-            Application.stage.setScene(new Scene(view.getParentView()));
+            Application.stage.setScene(new Scene(regView.getParentView()));
         }
     }
     
@@ -73,6 +80,12 @@ public class LoginPageController {
             // navigate to chat room
             statusMessage.setText("Successfully logged in!");
             statusMessage.setTextFill(Color.GREEN);
+            
+            try {
+                chatView.setParentViewToNull();
+            } catch (Exception e) {
+                Application.stage.setScene(new Scene(chatView.getParentView()));
+            }
         } 
         
         loginField.clear();

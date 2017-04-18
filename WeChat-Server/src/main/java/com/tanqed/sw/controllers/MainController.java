@@ -1,7 +1,5 @@
 package com.tanqed.sw.controllers;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tanqed.sw.controllers.services.UserServices;
+import com.tanqed.sw.userServices.UserServices;
 
 /**
  * Restful server
@@ -36,8 +34,8 @@ public class MainController {
 	// java variable
 	@PostMapping("/sign-up")
 	public String signUp(@RequestParam("username") String username, 
-			     @RequestParam("password") String password) throws Throwable {
-		logger.info("@@@ Before Creating User: " + username + "  " + password + " @@@");
+						 @RequestParam("password") String password) throws Throwable {
+		logger.info("Before Creating User: " + username + "  " + password);
 		return userService.createUser(username,password);
 
 	} // end of signUp end-point
@@ -49,7 +47,7 @@ public class MainController {
 
 	@GetMapping("/login")
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-		logger.info("Before Login User: " + username + " | " + password);
+		logger.info("Before Login User: " + username + "  " + password);
 
 		return userService.loginUser(username,password);
 	} // end of /login end point

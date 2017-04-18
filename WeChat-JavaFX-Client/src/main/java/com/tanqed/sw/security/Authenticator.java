@@ -6,11 +6,6 @@
 package com.tanqed.sw.security;
 
 import com.tanqed.sw.model.User;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.logging.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -53,7 +48,7 @@ public class Authenticator {
 
         // AWS 34.251.207.109
         
-        status = restTemplate.getForObject("http://localhost:8080/login"
+        status = restTemplate.getForObject("http://34.251.207.109:8080/login"
                 + "?username=" + login
                 + "&password=" + password,
                 String.class);
@@ -90,7 +85,7 @@ public class Authenticator {
         // localhost
         // POST request to an end-point with parameters. Request body is set to null,
         // but may contain user object.
-        result = restTemplate.postForObject("http://localhost:8080/sign-up"
+        result = restTemplate.postForObject("http://34.251.207.109:8080/sign-up"
                 + "?username=" + username
                 + "&password=" + password,
                 request, String.class);
