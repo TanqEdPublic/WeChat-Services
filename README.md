@@ -19,9 +19,25 @@
 * [Installing MySQL Server](https://dev.mysql.com/doc/refman/5.7/en/windows-installation.html)
 * [Installing required tools](https://github.com/TanqEdPublic/WeChat-Services/wiki/Required-tools-for-Eclipse-&-IntelliJ-IDEA)
 
+## Simple User Guide
+
+you can only run the Server which is in the Master Branch, make sure databases(Mysql & MonfoDB) works correctly before you run this Server project by using IDEs (such as Eclipse). Also, you can choose to package it to war file running with extra tomcat server or package it to jar file to run by using correct JRE. 
+
+> Tip: **Postman** is a good tool for testing the Server.
+
+At the same time, two clients' projects are provided in another two branches. 
+
+For browser client, [python3.0](https://www.python.org/downloads/) environment is the essencial component.
+
+For desktop client, Javafx is available as fully integrated feature of the JRE and JDK starting from java SE 7
+
+Overall, not only browser clients but also desktop clients can communicate with each other through the Server.
+
+> Tip: We just suggest to set up the server online using AWS/Azure, then the client can communicat with the server by ip address. For the client projects we provided, we used our own AWS virtual mashine to run the server, make sure you changed the valid ip address you have before testing the clients.
+
 ### Possible Errors
 
-* MAC OSX Error --> complains that there is no /data/db folder, click [solution](http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder)
+* MAC OSX Error (MongoDB) --> complains that there is no /data/db folder, click [solution](http://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder)
 * [Not relevant to a project anymore] For InteliJ IDE in order to recognize MySQL exceptions, it is required to install [MySQL JDBC Connector](https://dev.mysql.com/downloads/connector/j/).   
 
 
