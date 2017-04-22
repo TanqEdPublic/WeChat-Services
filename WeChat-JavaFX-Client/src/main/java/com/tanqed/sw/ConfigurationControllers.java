@@ -15,7 +15,6 @@ import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Lazy;
 
 /*
     Configuration-annotated class. Typically consists of @Bean-annotated
@@ -87,10 +86,11 @@ public class ConfigurationControllers {
     public class View {
         private Parent parentView;
         private Object controller;
-        private Logger logger = LoggerFactory.getLogger(View.class);
+        private final Logger logger;
         
         
         public View(Parent view, Object controller) {
+            this.logger = LoggerFactory.getLogger(View.class);
             this.parentView = view;
             this.controller = controller;
             logger.info("New FX Controller created! ID: " + this.toString());

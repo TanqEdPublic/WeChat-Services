@@ -17,5 +17,5 @@ public interface ChatRoom{
     void sendMessage(ChatMessage message);
     Collection<ChatMessage> getChat();
 
-    public void setRestTemplate(RestTemplate restTemplate);
+    void setRestTemplate(RestTemplate restTemplate);
 }

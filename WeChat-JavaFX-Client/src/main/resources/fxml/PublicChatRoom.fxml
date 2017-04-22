@@ -21,7 +21,7 @@
                         <Insets bottom="10.0" left="100.0" top="10.0" />
                      </HBox.margin>
                   </TextArea>
-                  <Button fx:id="sendMessage" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Send">
+                  <Button fx:id="sendMsg" mnemonicParsing="false" onAction="#sendMessage" prefHeight="25.0" prefWidth="56.0" text="Send">
                      <HBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="15.0" />
                      </HBox.margin>
@@ -39,7 +39,13 @@
             <VBox prefHeight="309.0" prefWidth="101.0" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <VBox prefHeight="309.0" prefWidth="119.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="309.0" prefWidth="119.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#refreshChat" text="Refresh" />
+               </children>
+               <padding>
+                  <Insets left="20.0" top="280.0" />
+               </padding></VBox>
          </right>
          <center>
             <ScrollPane BorderPane.alignment="CENTER">

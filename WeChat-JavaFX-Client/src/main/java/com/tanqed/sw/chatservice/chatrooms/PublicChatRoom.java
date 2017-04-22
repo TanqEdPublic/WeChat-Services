@@ -15,7 +15,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -49,7 +48,7 @@ public class PublicChatRoom implements ChatRoom{
         headers.add("Accept", "application/json");
         headers.add("Content-Type", "application/json");
        
-        // request wrapper class
+        // Class that represents request with headers and body
         HttpEntity request = new HttpEntity(null, headers);
         
         /* Response catching */
@@ -60,8 +59,6 @@ public class PublicChatRoom implements ChatRoom{
         
         temp = response.getBody();
         
-        // temp = restTemplate.getForObject("http://34.251.207.109:8080/chatroom/public", List.class);
-
         LOGGER.info("### Chat size from AWS: " + String.valueOf(temp.size()) + " ###");
         // return array list with received chat
         return temp;
@@ -69,7 +66,25 @@ public class PublicChatRoom implements ChatRoom{
 
     @Override
     public void sendMessage(ChatMessage message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        /* Prepare request to AWS 34.251.207.109 */
+        
+        // Request headers
+        MultiValueMap<String, Object> headers = new LinkedMultiValueMap<>();
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        
+        HttpEntity request = new HttpEntity(message, headers);
+        
+        ResponseEntity<String> response = 
+                restTemplate.exchange("http://34.251.207.109:8080/chatroom/send-msg", 
+                                     HttpMethod.POST, request, 
+                                     String.class);
+        
+        if(response.getBody().equals("success")){
+            
+                LOGGER.info("### Message successfully arrived to Service ###");
+        }
     }
     
 }

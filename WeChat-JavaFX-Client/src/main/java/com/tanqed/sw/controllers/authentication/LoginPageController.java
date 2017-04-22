@@ -61,7 +61,7 @@ public class LoginPageController {
             LOGGER.info("##### Inside navigation method #####");
             regView.setParentViewToNull();
         } catch (Exception e) {
-            //e.printStackTrace();#
+            //e.printStackTrace();
             Application.stage.setScene(new Scene(regView.getParentView()));
         }
     }
@@ -80,7 +80,7 @@ public class LoginPageController {
             // navigate to chat room
             statusMessage.setText("Successfully logged in!");
             statusMessage.setTextFill(Color.GREEN);
-            
+            authenticator.setUserName(loginField.getText());
             try {
                 chatView.setParentViewToNull();
             } catch (Exception e) {

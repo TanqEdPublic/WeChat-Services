@@ -24,6 +24,17 @@ public class Authenticator {
     private static final Logger LOGGER = LoggerFactory.getLogger(Authenticator.class);
 
     private RestTemplate restTemplate;
+    
+    // currently logged in user
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     // used to set RestTemplate from config
     public void setRestTemplate(RestTemplate restTemplate) {
