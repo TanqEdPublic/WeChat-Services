@@ -19,6 +19,9 @@
 * [Installing MySQL Server](https://dev.mysql.com/doc/refman/5.7/en/windows-installation.html)
 * [Installing required tools](https://github.com/TanqEdPublic/WeChat-Services/wiki/Required-tools-for-Eclipse-&-IntelliJ-IDEA)
 
+## Feature Demo Video
+[YouTube Link](https://www.youtube.com/watch?v=O1MenGMSBkI&feature=youtu.be)
+
 ## Simple User Guide
 
 you can only run the Server which is in the Master Branch, make sure databases(Mysql & MonfoDB) works correctly before you run this Server project by using IDEs (such as Eclipse). Also, you can choose to package it to war file running with extra tomcat server or package it to jar file to run by using correct JRE. 
