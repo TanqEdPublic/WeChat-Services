@@ -37,6 +37,7 @@ public class PublicChatRoom implements ChatRoom{
         this.restTemplate = restTemplate;
     }
     
+    
     @Override
     public Collection<ChatMessage> getChat() {
         
@@ -60,7 +61,7 @@ public class PublicChatRoom implements ChatRoom{
         temp = response.getBody();
         
         LOGGER.info("### Chat size from AWS: " + String.valueOf(temp.size()) + " ###");
-        // return array list with received chat
+        // return collection with messages from back-end
         return temp;
     }
 

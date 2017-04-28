@@ -23,10 +23,12 @@ import org.springframework.context.annotation.Lazy;
 @SpringBootApplication
 public class Application extends AbstractJavaFxApplicationSupport {
 
-    public static Stage stage;
+    public static Stage stage; // a Main stage of an Application
+    
     @Value("${ui.title:JavaFX Application}")//
     private String windowTitle;
 
+    // Obtaining instance of Login View with its controller
     @Qualifier("loginView")
     @Autowired
     private ConfigurationControllers.View view;
@@ -35,8 +37,9 @@ public class Application extends AbstractJavaFxApplicationSupport {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle(windowTitle);
-        stage.setScene(new Scene(view.getParentView()));
-        stage.setResizable(true);
+        stage.setScene(new Scene(view.getParentView())); // using view instance to set 
+                                                         // its Parent node as Scene root
+        stage.setResizable(false);
         stage.centerOnScreen();
         stage.show();
     }

@@ -15,16 +15,21 @@ import org.springframework.web.client.RestTemplate;
 /**
  *
  * @author eduar
+ * 
+ * Config class to define bean for Public Chatroom
+ * In future, other static chat rooms can be defined here.
+ * 
  */
 @Configuration
 public class ChatRoomsConfig {
-    
+    // logger for debugging 
     private final Logger LOGGER = LoggerFactory.getLogger(ChatRoomsConfig.class);
-    
+   
+    // Public Room bean with injected Rest Template
     @Bean(name = "publicRoom")
     ChatRoom getPublicChatRoom(RestTemplate restTemplate){
         ChatRoom publicChat = new PublicChatRoom();
-        publicChat.setRestTemplate(restTemplate);
+        publicChat.setRestTemplate(restTemplate); 
         
         LOGGER.info("#### Public Room Bean Created ####");
         return publicChat;

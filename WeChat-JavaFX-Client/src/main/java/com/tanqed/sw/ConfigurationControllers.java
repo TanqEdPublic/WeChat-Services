@@ -16,6 +16,8 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// ref.: https://habrahabr.ru/post/265511/
+
 /*
     Configuration-annotated class. Typically consists of @Bean-annotated
     methods that define instantiation, configuration, and initialization logic
@@ -83,6 +85,7 @@ public class ConfigurationControllers {
         }
     }
 
+    // View Model that we use to wrap FXML Reasource Parent node and its Controller
     public class View {
         private Parent parentView;
         private Object controller;

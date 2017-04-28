@@ -28,13 +28,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 /**
- * FXML Controller class
- *
  * @author eduar
+ * 
+ * FXML Controller for chat room.
+ * Contains Public Chat Room instance to contact Service on Cloud
+ * 
+ * 
  */
 public class PublicChatRoomController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(PublicChatRoomController.class);
+    
+    // Thread executioner for task that need to repeat every so often 
     private final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
     
     
@@ -42,6 +47,7 @@ public class PublicChatRoomController {
     @Autowired
     private ChatRoom publicChat;
 
+    // Required for accessing currently logged in user name
     @Qualifier("authent")
     @Autowired
     private Authenticator authenticator;
@@ -71,13 +77,16 @@ public class PublicChatRoomController {
             public void onChanged(ListChangeListener.Change c) {
                 System.out.println("Detected a change! ");
 
+                // checks which items were added to collection
+                // those newly added items are stored as a sublist 
                 for (Iterator it = c.getAddedSubList().iterator(); it.hasNext();) {
-                    ChatMessage msg = (ChatMessage) it.next();
+                    ChatMessage msg = (ChatMessage) it.next(); // assign each object in sublist to a message class
 
-                    chatView.getChildren().add(messageBuilder(msg));
+                    chatView.getChildren().add(messageBuilder(msg)); // add new message to chat view.
                 }
-            }
-        });
+            } 
+        }); // This peace of code is still under construction and 
+            // does not produce desirable results
 
         LOGGER.info(String.valueOf(observableChat.size()));
         // Initialize chat history 

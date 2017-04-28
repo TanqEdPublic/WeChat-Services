@@ -17,5 +17,7 @@ public interface ChatRoom{
     void sendMessage(ChatMessage message);
     Collection<ChatMessage> getChat();
 
+    // method to set rest template. Ideally shouldn't be here,
+    // but no time to develope work around. 
     void setRestTemplate(RestTemplate restTemplate);
 }

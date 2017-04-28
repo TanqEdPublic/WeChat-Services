@@ -23,18 +23,25 @@ import org.springframework.stereotype.Component;
 /**
  *
  * @author eduar
+ * 
+ * FX Controller for Registration View. 
+ * Contains control properties for UI elements 
+ * Authenticator to handle registration on cloud
+ * View beans for navigation
  */
 @Component
 public class RegistrationController {
     
     private final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
-    @Qualifier("authent") @Autowired Authenticator authenticator;
+    
+    @Qualifier("authent") 
+    @Autowired Authenticator authenticator;
     
     @Qualifier("loginView")
     @Autowired
     private ConfigurationControllers.View view;
 
-    
+    // Properties are linked to elements in GUI via fx:id attribute.
     @FXML TextField loginField;
     @FXML PasswordField passwordField;
     @FXML Label statusMessage;
@@ -53,17 +60,17 @@ public class RegistrationController {
     
     @FXML
     public void register(){
-        
+        // Send authenticator to do registration and return status of it
         boolean status = authenticator.register(loginField.getText(), passwordField.getText());
         LOGGER.info("##### Registration Submission status returned... #####" + status);
         
+        // 
         if(!status){
            statusMessage.setText("User exist! Try another...");
            statusMessage.setTextFill(Color.RED);
         }else{
            statusMessage.setText("Registration Successful");
            statusMessage.setTextFill(Color.GREEN);
-           
            // go to login
         }
         
